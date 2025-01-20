@@ -1,16 +1,22 @@
+using System.Runtime.InteropServices;
+
 namespace MultiRoblox
 {
     internal static class MultiRoblox
     {
-        static NotifyIcon? NotifyIcon;
+        [DllImport("dwmapi.dll")]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int dwAttribute, ref int pvAttribute, int cbAttribute);
 
+        static NotifyIcon? NotifyIcon;
+        static About? About;
         static void Main()
         {
             ContextMenuStrip ContextMenuStrip = new ContextMenuStrip();
+            ContextMenuStrip.Items.Add(new ToolStripMenuItem("About", null, ShowAbout));
             ContextMenuStrip.Items.Add(new ToolStripMenuItem("Exit", null, Exit));
 
             NotifyIcon = new NotifyIcon();
-            NotifyIcon.Icon = new Icon(new MemoryStream(Properties.Resources.AppIcon));
+            NotifyIcon.Icon = Properties.Resources.AppIcon;
 
             NotifyIcon.ContextMenuStrip = ContextMenuStrip;
 
@@ -26,6 +32,24 @@ namespace MultiRoblox
         {
             NotifyIcon?.Dispose();
             Application.Exit();
+        }
+
+        static void ShowAbout(object? sender, EventArgs e)
+        {
+            if (About == null || About.IsDisposed)
+            {
+                About = new About();
+
+                int useDarkMode = 1;
+                DwmSetWindowAttribute(About.Handle, 20, ref useDarkMode, sizeof(int));
+                
+                About.Show();
+            }
+            else
+            {
+                About.BringToFront();
+                About.Activate();
+            }
         }
     }
 }
