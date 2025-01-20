@@ -136,6 +136,7 @@
             Controls.Add(NameLabel);
             Controls.Add(Logo);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "About";
