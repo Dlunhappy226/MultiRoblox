@@ -11,6 +11,20 @@ namespace MultiRoblox
         static About? About;
         static void Main()
         {
+            if (Mutex.TryOpenExisting("MultiRoblox_singletonMutex", out var _))
+            {
+                MessageBox.Show("MultiRoblox already running.", "MultiRoblox", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return;
+            }
+
+            if (Mutex.TryOpenExisting("ROBLOX_singletonMutex", out var _))
+            {
+                MessageBox.Show("Roblox already running. Please run MultiRoblox before starting Roblox.", "MultiRoblox", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return;
+            }
+
             ContextMenuStrip ContextMenuStrip = new ContextMenuStrip();
             ContextMenuStrip.Items.Add(new ToolStripMenuItem("About", null, ShowAbout));
             ContextMenuStrip.Items.Add(new ToolStripMenuItem("Exit", null, Exit));
@@ -23,6 +37,7 @@ namespace MultiRoblox
             NotifyIcon.Text = "MultiRoblox";
             NotifyIcon.Visible = true;
 
+            new Mutex(true, "MultiRoblox_singletonMutex");
             new Mutex(true, "ROBLOX_singletonMutex");
 
             Application.Run();
