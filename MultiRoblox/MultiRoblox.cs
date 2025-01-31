@@ -12,6 +12,14 @@ namespace MultiRoblox
                 return;
             }
 
+            Update update = new Update();
+            bool isUpdate = update.CheckUpdate();
+            if (isUpdate)
+            {
+                update.UpdatetoNewVersion();
+                return;
+            }
+
             new ContextMenu();
 
             new Mutex(true, "MultiRoblox_singletonMutex");
