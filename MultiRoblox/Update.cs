@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics;
 using System.Net.Http.Json;
+using System.Reflection;
 
 namespace MultiRoblox
 {
     internal class Update
     {
-        string version = "v1.0.0";
+        string version = $"v{Assembly.GetExecutingAssembly().GetName().Version!.ToString()[..^2]}";
         string repo = "Dlunhappy226/MultiRoblox";
 
         public bool CheckUpdate()

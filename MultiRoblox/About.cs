@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace MultiRoblox
         public About()
         {
             InitializeComponent();
+            VersionLabel.Text = Assembly.GetExecutingAssembly().GetName().Version!.ToString()[..^2];
         }
 
         private void GithubLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
