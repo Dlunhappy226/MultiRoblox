@@ -9,6 +9,7 @@ Open Windows PowerShell and enter:
 ```
 iwr https://raw.githubusercontent.com/Dlunhappy226/MultiRoblox/main/install.ps1 | iex
 ```
+\* If Roblox already running, you might have to restart your computer.
 #### Uninstall
 Delete MultiRoblox.exe in [Windows' startup folder](https://www.dell.com/support/kbdoc/en-us/000124550/how-to-add-app-to-startup-in-windows-10).
 ### Manual install
