@@ -16,8 +16,15 @@ namespace MultiRoblox
             bool isUpdate = update.CheckUpdate();
             if (isUpdate)
             {
-                update.UpdatetoNewVersion();
-                return;
+                DialogResult userChoice = MessageBox.Show("New version available. Do you want to update?",
+                    "MultiRoblox",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
+                if (userChoice == DialogResult.Yes)
+                {
+                    update.UpdatetoNewVersion();
+                    return;
+                }
             }
 
             new ContextMenu();
@@ -38,7 +45,10 @@ namespace MultiRoblox
 
             if (Mutex.TryOpenExisting("ROBLOX_singletonMutex", out var _))
             {
-                MessageBox.Show("Roblox is already running. Please run MultiRoblox before starting Roblox.", "MultiRoblox", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Roblox is already running. Please run MultiRoblox before starting Roblox.",
+                    "MultiRoblox",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 return true;
             }
 

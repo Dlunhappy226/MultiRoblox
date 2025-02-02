@@ -50,7 +50,6 @@ namespace MultiRoblox
             Process process = new Process();
             process.StartInfo.FileName = "powershell.exe";
             process.StartInfo.Arguments = "iwr https://raw.githubusercontent.com/Dlunhappy226/MultiRoblox/main/install.ps1 | iex";
-            process.StartInfo.CreateNoWindow = true;
             process.Start();
         }
     }
