@@ -47,17 +47,17 @@ function Update-MultiRoblox {
         Exit 1
     }
 
-    Remove-Item ".\MultiRoblox.exe"
-    Move-Item "$env:TEMP\MultiRoblox.exe" ".\MultiRoblox.exe"
+    Remove-Item "MultiRoblox.exe"
+    Move-Item "$env:TEMP\MultiRoblox.exe" "MultiRoblox.exe"
 
-    Start-Process "$StartupFolder\MultiRoblox.exe"
+    Start-Process "MultiRoblox.exe"
 
     Write-Host "Successfully updating MultiRoblox"
 }
 
-if (Test-Path ".\MultiRoblox.exe") {
+if (Test-Path "MultiRoblox.exe") {
     Write-Host "Updating MultiRoblox..."
-    Install-MultiRoblox
+    Update-MultiRoblox
 }
 else {
     Write-Host "Installing .NET Runtime..."
