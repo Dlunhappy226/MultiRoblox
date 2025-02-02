@@ -1,4 +1,4 @@
-$TargetVersion = "v1.0.0"
+$TargetVersion = "v1.1.0"
 
 
 function Install-DotNET {
